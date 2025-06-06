@@ -1,0 +1,233 @@
+@import "variables";
+.header{
+  height: $head-h;
+  position: fixed;
+  top:0;
+  z-index: 2;
+  background-color: #fff;
+  padding-inline: 55px;
+  @include flex(between);
+  width:100%;
+  @include media-max($l){
+    height: $head-h-m;
+    padding-inline: $pd-inline;
+  }
+  .menu_bar{
+    width:24px;
+    @include media-min($l){
+      display: none;
+    }
+  }
+  .logo{
+    font-size:28px;
+    font-weight: bold;
+    @include media-max($l){
+      font-size:20px;
+    }
+  }
+}
+.gnb{
+  margin-left:auto;
+  @include flex(y);
+  gap:40px;
+  font-size: 18px;
+  font-weight: 600; 
+  @include media-max($l){
+    width:80vw;
+    background-color: #fff;
+    height: 100vh;
+    flex-direction: column;
+    padding:100px 30px 50px;
+    position: relative;
+    z-index: 2;
+  }
+  &__bg{
+    display: none;
+    @include media-max($l){
+      display: none;
+      width:100vw;
+      height: 100vh;
+      position: fixed;
+      background-color: rgba(0,0,0,0);
+      //right:-200%;
+      right:0;
+      top:0;
+      @include duration;
+    }
+  }
+  &__wrap{
+    @include media-max($l){
+      //display: none;     
+      position: fixed;
+      top:0;
+      width:100vw;
+      right:-200%;
+      @include duration;
+      &.active{
+        right:0; 
+        @include duration;  
+        .gnb__bg{
+          display: block;
+          background-color: rgba(0,0,0,.8);
+          //right:0;
+          @include duration;
+        }
+        .gnb__close{
+          right:20px;
+          @include duration;
+        }
+      }   
+    }
+  }
+  &__close{
+    position: fixed;
+    right:-200%;
+    top:13px;
+    z-index: 3;
+    width:24px;
+    @include media-min($l){
+      display: none;
+    }
+  }
+}
+.gnb_menu{
+  @include media-max($l){
+    @include flex(y);
+    gap:5px;
+    width:100%;
+    justify-content: flex-start !important;
+    &::before{
+      content: '';
+      display: inline-block;
+      width:6px;
+      height: 6px;
+      background-color: $point;
+      border-radius: 6px;
+    }
+  }
+  &.active{
+    @include flex(all);
+    gap:5px;
+    @include media-max($l){
+    }
+    &::before{
+      content: '';
+      display: inline-block;
+      width:6px;
+      height: 6px;
+      background-color: $point;
+      border-radius: 6px;
+    }
+  }
+}
+
+.footer{
+  border-top:1px solid #F1F1F1;
+  font-size: 14px;
+  margin-top:100px;
+  @include media-max($l){
+    margin-top:60px;
+  }
+  .inner{
+    width:$max-w;
+    margin:0 auto;
+    padding-block:46px;
+    position: relative;
+    @include media-max($xl){
+      width:100%;
+      padding:30px $pd-inline;
+    }
+  }
+  &__link{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: initial;
+    font-weight: 500;
+    &:not(:first-child):before{
+      content: '';
+      display: inline-block;
+      width:1px;
+      height: 12px;
+      background-color: #D8D8D8;
+      margin-inline:10px;
+    }
+    &_area{
+      display: flex;
+      align-items: center;
+      margin-block:18px;
+      @include media-max($l){
+        margin-block:0 10px;
+      }
+    }
+  }
+  .copy{
+    margin-top:20px;
+    @include media-max($l){
+      margin-top:10px;
+    }
+  }
+  .address{
+    line-height: 2;
+    @include media-max($l){
+      line-height: 1.5;
+      font-size:13px;
+    }
+    span:not(:last-child):after{
+      content: '';
+      display: inline-block;
+      width:1px;
+      height: 12px;
+      background-color: #D8D8D8;
+      margin-inline:10px;
+      @include media-max($l){
+        display: none;
+      }
+    }
+    .company_name:after{
+      @include media-max($l){
+        content: '';
+        display: inline-block !important;
+        width:1px;
+        height: 12px;
+        background-color: #D8D8D8;
+        margin-inline:10px;
+      }
+    }
+    .ceo{}
+    &> *:not(.company_name, .ceo){
+      @include media-max($l){
+        width:100%;
+        display: block;
+      }
+    }
+    @include media-max($l){
+      br{
+        display: none !important;
+      }
+    }
+  }
+  .google_play{
+    width: 126px;
+    @include media-min($l){
+      position: absolute;
+      right:0;
+      top:48px;
+    }
+    @include media-max($l){
+      margin-top:30px;
+    }
+  }
+}
+
+.container{
+  width:$max-w;
+  margin:120px auto 0;
+  min-height: 80vh;
+  @include media-max($xl){
+    width:100%;
+    padding-inline: $pd-inline;    
+    margin-top:calc($head-h-m + 20px)
+  }
+}
+

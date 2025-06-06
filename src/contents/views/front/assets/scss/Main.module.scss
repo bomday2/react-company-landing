@@ -1,0 +1,536 @@
+@import "variables";
+//공통
+.container{
+  margin-top:$head-h;
+  @include media-max($l){
+    margin-top:$head-h-m;
+  }
+}
+.inner{
+  width:$max-w;
+  margin:0 auto;
+  @include flex(all);
+  @include flex(column);
+  padding-block:85px;
+  @include media-min($l){
+    //min-height: calc(100vh - $head-h);
+  }
+  @include media-max($l){
+    width:auto;
+    padding-inline: $pd-inline;
+    padding-block:50px;
+  }
+}
+.sub_tit{
+  text-align: center;
+  font-size: 50px;
+  line-height: 1.5;
+  font-weight: 600;
+  margin-bottom:60px;
+  @include media-max($l){
+    margin-bottom:30px;
+    font-size:26px;
+  }
+}
+//section별
+.main_visual{
+  padding-bottom:120px;
+  background-color: $bg;
+  @include media-max($l){
+    padding-bottom:30px;
+  }
+  .inner{
+    @include flex(all);
+    flex-direction: row;
+    gap:70px; 
+    @include media-max($l){
+      flex-direction: column;
+      gap:30px;
+    }
+  }
+  .txt_area{
+    text-align: center; 
+    @include media-max($l){
+      order:2;
+    }   
+    .tit{
+      font-size: 50px;
+      font-weight: 600;  
+      line-height: 1.4;
+      @include media-max($l){
+        font-size:26px;
+      }
+    }
+    .txt{
+      margin-top: 40px;
+      font-size: 20px;
+      font-weight: 600;   
+      line-height: 1.7;
+      @include media-max($l){
+        font-size:15px;
+        margin-top:20px;
+        br{
+          display: none;
+        }
+      }
+    }
+  }
+  .img_area{
+    width:550px;
+    @include media-max($l){
+      width:auto;
+      max-width:300px;
+      order:1;
+    }
+  }
+}
+//B2B 러닝 허브
+.manager_sec{
+  .manager_slide{
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.2);
+    @include media-max($l){
+      border-radius: 10px;
+    }
+    &__wrap{
+      width:100%;
+      position: relative;
+    }   
+  }
+}
+
+.b2b_sec{
+  background-color: $bg;
+  .contents{
+    @include media-min($l){
+      @include list(30px,0,3);
+    }
+    @include media-max($l){
+      @include flex(column);
+      gap:15px;
+    }
+  }
+  .item{
+    border-radius: 40px;
+    background: #FFF; 
+    padding:50px 35px;
+    line-height: 1.5;
+    align-self: stretch;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.1);
+    @include media-max($l){
+      padding:20px 20px 30px;
+      border-radius: 20px;
+    }
+    .tit{
+      margin-top:50px;
+      font-size: 29px;
+      font-weight: 600; 
+      @include media-max($l){
+        margin-top:20px;
+        font-size:22px;
+      }
+    }
+    .txt{
+      font-size: 22px;
+      font-weight: 500;  
+      margin-top:36px;
+      @include media-max($l){
+        margin-top:15px;
+        font-size:16px;
+      }
+    }
+  }
+}
+//혁신
+.innovation_sec{
+  .video_area{
+    width:100%;
+    border-radius: 40px;
+    overflow: hidden;
+    @include media-max($l){
+      border-radius: 20px;
+    }
+    iframe{
+      width:100%;
+      aspect-ratio: 1010 / 568;
+    }
+  }
+}
+//차별화
+.distinction_sec{
+  background-color: $bg;
+  .contents{
+    @include flex(y);
+    gap:30px;
+    @include media-max($l){
+      flex-direction: column;
+      gap:15px;
+    }
+    .item{
+      padding:20px 0 0px;
+      border-radius: 40px;
+      background: #F9F9F9;
+      box-shadow: 0 0 20px rgba(0,0,0,.2);  
+      overflow: hidden;
+      @include media-max($l){
+        border-radius: 20px;
+      }
+      .chart{
+        padding-inline: 30px;
+      }
+      .tit{
+        font-size: 22px;
+        font-weight: 700;   
+        text-align: center;
+        margin-bottom:20px;
+        @include media-max($l){
+          margin-bottom:10px;
+        }
+      } 
+      .list{
+        background-color: #fff;
+        padding:40px 17px 50px;
+        @include flex(column);
+        gap:14px;
+        @include media-max($l){
+          padding:25px 20px 30px;
+        }
+        .company{
+          @include inflex(all);
+          width:60px;
+          min-width: 60px;
+          height: 60px;
+          border-radius: 50px;
+          color:#fff;
+          font-size: 14px;
+          font-weight: 600; 
+          text-align: center;
+          line-height: 1;
+          &.my{
+            background-color: $point;
+          }
+          &.s{
+            background-color:#8B8B8B ;
+          }
+          &.r{
+            background-color: #CDCDCD;
+            color: #8B8B8B;
+          }
+        }
+        .txt{
+          font-size: 19px;
+          font-weight: 500;
+          color:#787878;
+          @include media-max($l){
+            font-size:16px;
+          }
+          &.point{
+            font-weight: 700
+          }
+        }
+        li{
+          @include flex(y);
+          gap:17px;
+          @include media-max($l){
+            gap:10px;
+          }
+        }
+      }
+    }
+  }
+}
+//기술력
+.skill_sec{
+  .inner{
+    width:100%;
+  }
+  .skill_slide{
+    //margin:0;
+    width:100%;
+    @include media-max($l){
+      width:calc(100% + $pd-inline * 2);
+      margin-left:calc(0px - $pd-inline);
+      align-self: stretch;
+    }
+    .slide{
+      @include flex(between);
+      //width:100%;
+      opacity: .5;
+      @include media-max($l){
+        @include flex(column);
+      }
+      .txt_area{        
+        gap:55px;
+        line-height: 1.5;
+        @include flex(column);
+        @include media-max($l){
+          order:2;
+          text-align: center;
+          gap:15px;
+          br{
+            display: none !important;
+          }
+        }
+        .tit{
+          font-size: 40px;
+          font-weight: 700;
+          @include media-max($l){
+            font-size:22px
+          }          
+        }
+        .txt{
+          font-size: 24px;
+          font-weight: 500;
+          @include media-max($l){
+            font-size:16px;
+          }
+        }
+      }
+      .img_area{
+        width:520px;
+        min-width: 520px;
+        text-align: center;
+        @include media-max($l){
+          width:100%;
+          min-width: 100%;
+          order:1;
+        }
+      }
+    }
+  }
+}
+//학습기능
+.function_sec{
+  background: $bg;
+  .function_slide{
+    width:100%;
+    box-shadow: 0px 0px 20px rgba(0,0,0,.1);
+    border-radius: 40px;
+    background-color: #fff;
+    @include media-max($l){
+      border-radius: 20px;
+    }
+    &__wrap{
+      width:100%;
+      position: relative;
+    }
+  }
+  .slide{
+    @include flex(y);
+    gap:40px;
+    width:100%;
+    padding:40px;
+    align-self: stretch;
+    @include media-max($l){
+      @include flex(column);
+      padding:20px;
+      gap:20px;
+    }
+    &>*{
+      align-self: stretch;
+    }
+    .txt_area{
+      @include media-max($l){
+        order:2;
+        text-align: center;
+      }
+    }
+    .tit{
+      font-size: 40px;  
+      margin-block:34px 40px;
+      @include media-max($l){
+        font-size:22px;
+        margin-block:0 15px;
+        line-height: 1.3;
+      }
+    }
+    .txt{
+      font-size: 20px;
+      line-height: 1.5;
+      @include media-max($l){
+        font-size:16px;
+      }
+    }
+    img{
+      width:490px;
+      @include media-max($l){
+        order:1;
+        width:100%;
+      }
+    }
+  }
+}
+//기업들의 목소리 
+.review_sec{
+  .point_area{
+    @include flex(all);
+    gap:50px;
+    margin-block:30px 85px;
+    @include media-max($l){
+      gap:15px;
+      margin-block:30px 40px;
+      width:calc(100% + $pd-inline * 2);
+    }
+    .item{
+      @include flex(column);
+      @include flex(all);
+      gap:10px;
+      align-self: flex-start;
+      &:not(:last-child){
+        border-right: 1px solid #DEDEDE;
+        padding-right:50px;
+        @include media-max($l){
+          padding-right:15px;
+        }
+      }
+    }
+    .num{
+      font-size: 50px;  
+      @include media-max($l){
+        font-size:24px;
+      }
+    }
+    .txt{
+      font-size:18px;
+      text-align: center;
+      @include media-max($l){
+        font-size:14px;
+      }
+    }
+  }
+  .review_area{
+    @include flex(column);
+    gap:20px;
+    .item{
+      border-radius: 30px;
+      background: #fff;  
+      padding:28px 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,.2);
+      @include flex(y);
+      gap:20px;
+      width:66%;
+      @include media-max($l){
+        border-radius: 20px;
+        padding:20px;
+        width:100%;
+      }
+      &:nth-child(2n){
+        align-self: flex-end;
+      }
+      .profile{
+        width:80px;
+        min-width:80px;
+      }
+      .name{
+        font-size: 20px;
+        font-weight: 700;    
+        @include media-max($l){
+          font-size:14px;
+        }
+      }
+      .review{
+        width:100%;
+        font-size: 16px;
+        line-height: 1.5;
+        @include media-max($l){
+          font-size:12px;
+        }
+      }
+      .star{
+        @include flex(y);
+        gap:5px;
+        @include media-max($l){
+          gap:2px;
+          img{
+            width:14px;
+          }
+        }
+      }
+    }
+    .txt_area{
+      @include flex(y);
+      @include flex-wrap;
+      gap:12px 10px;
+      @include media-max($l){
+        gap:5px 8px;
+      }
+    }
+  }
+  
+}
+//파트너
+.partner_sec{
+  background: $bg; 
+  .inner{
+    overflow: hidden;
+    width:100%;
+  } 
+  .partner_list{
+    //@include list(40px,40px,4);
+    display: flex;
+    gap:40px;
+    animation: scroll-left 40s linear infinite;
+    padding-block:20px;
+    @include media-max($l){
+      gap:7px;
+      padding-block:3.5px;
+    }
+    .item{
+      border-radius: 30px; 
+      overflow: hidden;
+      box-shadow: 0px 0px 20px rgba(0,0,0,.1); 
+      width:270px;
+      @include media-max($l){
+        width:100px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,.1); 
+      }
+    }
+  }
+  .sliderContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    overflow: hidden;
+    // @include media-max($l){
+    //   gap:0px;
+    // }
+  }
+  .sliderRow {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .right .partner_list {
+    animation: scroll-right 40s linear infinite;
+  }
+  /* 왼쪽 방향 */
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  /* 오른쪽 방향 */
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+//자주 묻는 질문들
+.faq_sec{
+  margin-bottom:-100px;
+  @include media-max($l){
+    margin-bottom: -60px;
+  }
+  .inner{
+    justify-content: flex-start;
+  }
+}
+
