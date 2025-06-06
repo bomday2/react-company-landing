@@ -1,0 +1,161 @@
+@import "variables";
+.board_search{
+  @include flex(right);
+  gap:10px;
+  margin-block:50px 20px;
+  margin-left:auto;
+  @include media-max($l){
+    border-top:1px solid #F1F1F1;
+    margin-top:20px;
+    padding-top:20px;
+  }
+  .input{
+    border-radius: 50px;
+    height: 44px;
+    width:300px;
+  }
+}
+.faq{
+  border-radius: 20px;
+  background: $bg; 
+  padding:15px 20px;
+  cursor: pointer;
+  @include media-max($l){
+    border-radius: 10px;
+  }
+  .f{
+    font-size: 15px;
+    font-weight: 600;
+    @include flex(y);
+    gap:10px;
+    &::before{
+      @include addArrow(10,#222,right);
+      @include duration;
+    }
+  }
+  .a{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    @include duration;
+  }
+  &.active{
+    background-color: #fff;
+    border: 1px solid #E9E9E9;
+    .f{
+      &::before{
+        @include addArrow(12,#222,down,3);
+        @include duration;
+        @include media-max($l){
+          @include addArrow(10,#222,down,2);
+        }
+      }
+    }
+    .a{
+      height: auto;
+      overflow: visible;
+      visibility: visible;
+      @include duration;
+      margin-top:10px;
+    }
+  }
+  &__wrap{
+    @include flex(column);
+    gap:10px;
+    width:100%;
+  }
+}
+.paging{
+  @include flex(all);
+  margin-top:50px;
+  @include media-max($l){
+    margin-top:30px;
+  }
+  .btn{
+    width:20px;
+    height: 20px;
+
+  }
+  .btn_first{
+    width:20px;
+    height: 20px;
+    margin-right:20px;
+    @include media-max($l){
+      margin-right:10px;
+    }
+  }
+  .btn_next{
+    margin-left:50px;
+    @include media-max($l){
+      margin-left:20px;
+    }
+  }
+  .btn_prev{
+    margin-right: 50px;
+    @include media-max($l){
+      margin-right:20px;
+    }
+  }
+  .btn_last{
+    margin-left:20px;
+    @include media-max($l){
+      margin-left:10px;
+    }
+  }
+  .btn_next,.btn_last{
+    transform: rotate(180deg);
+  }
+  .page{
+    width:50px;
+    height: 50px;
+    font-size: 16px;
+    @include inflex(all);
+    @include media-max($l){
+      width: 36px;
+      height: 36px;
+    }
+    &.active{
+      background-color: $bg;
+      border-radius: 50px;
+    }
+  }
+}
+.tv{
+  @include list(20px,50px,4);
+  @include media-max($l){
+    @include list(15px,30px,2);
+  }
+  .item{
+    .thumb{
+      @include thumb(100%,auto, 285/180);
+      border-radius: 10px;
+    }
+    .tit{
+      @include multi-ellipsis(1);
+      font-size: 20px;
+      font-weight: 700; 
+      margin-top:20px;
+      @include media-max($l){
+        margin-top:10px;
+        font-size:15px;
+      }
+    }
+    .info{
+      font-size: 13px;
+      color:#666;
+      margin-top:7px;
+      @include media-max($l){
+        font-size:12px;
+      }
+      .txt{
+        &:not(:last-child)::after {
+          @include addContent('',1px,10px,#666);
+          margin-inline:7px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@import "variables";
+.input_sec{
+  @include flex(y);
+  @include flex-wrap;
+  gap:50px 20px;
+  @include media-max($l){
+    gap:20px 15px;
+  }
+  .block{
+    width:100%;
+    &.col{
+      width:calc((100% - 20px) / 2)
+    }
+  }
+  .tit_field{
+    font-size: 20px;
+    font-weight: 600;   
+    @include media-max($l){
+      font-size:14px;
+    }
+  }
+  .input_field{
+    margin-top:10px;
+    input[type=date],
+    input[type=number]{
+      width:100%;
+    }
+  }
+}
+.textarea{
+  min-height: 200px;
+}
+.icon_must{
+  color:$point;
+}

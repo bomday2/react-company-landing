@@ -1,0 +1,78 @@
+@import "variables";
+.tab{
+  @include inflex(all);  
+  padding: 21px 35px;
+  border-radius: 50px;
+  font-size: 17px;
+  font-weight: 700; 
+  background: #F4F4F4;
+  @include media-max($l){
+    padding:10px 15px;
+    font-size:14px;
+  }
+  @include media-max($m){
+    min-width: calc((100% - 14px) / 3);
+  }
+  &.active{
+    background: $point;
+    color:#fff
+  }
+  &__wrap{
+    @include flex(all);
+    @include flex-wrap;
+    gap:10px;
+    @include media-max($l){
+      justify-content: flex-start;
+      gap:7px;
+    }
+  }
+}
+
+.btn{
+  @include inflex(all);
+  border-radius: 50px;
+  padding-inline: 30px;
+  @include media-max($l){
+    padding-inline: 17px;
+  }
+  /*크기*/
+  &.m{
+    height: 44px;
+  }
+  &.l{
+    height: 60px;
+    font-size:17px;
+    font-weight: 700;
+    @include media-max($l){
+      height: 50px;
+      font-size:15px;
+    }
+  }
+  /*색상*/
+  &.point{
+    background-color: $point;
+    color:#fff;
+  }
+  &.white{
+    background-color: #fff;
+    border: 1px solid #868686;
+  }
+  &__wrap{
+    @include flex(y);
+    gap:10px;
+    &.bottom{
+      @include flex(all);
+      margin-top:50px;
+      @include media-max($l){
+        margin-top:25px;
+      }
+      .btn{
+        min-width: 180px;
+        @include media-max($l){
+          //width:100%;
+          min-width: 150px;
+        }
+      }
+    }
+  }
+}
