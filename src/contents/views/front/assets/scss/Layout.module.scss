@@ -231,3 +231,12 @@
   }
 }
 
+.weather{
+  @include flex(y);
+  gap:10px;
+  .temperature{
+    font-weight: 500;
+    color:$fc-gray
+  }
+}
+

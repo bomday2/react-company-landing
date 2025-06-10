@@ -5,6 +5,8 @@ import layoutStyle from '../../assets/scss/Layout.module.scss';
 // img
 import IconBar from '../../assets/img/icon_bar.png';
 import BtnClose from '../../assets/img/btn_close.png';
+//components
+import Weather from '../inc/Weather';
 
 function Header() {
   const location = useLocation();
@@ -54,6 +56,7 @@ function Header() {
         </nav>
         <i className={layoutStyle.gnb__bg}></i>
       </div>
+      <Weather/>
       <button className={layoutStyle.menu_bar} onClick={handleClick}>
         <img src={IconBar} alt="menu" />
       </button>
