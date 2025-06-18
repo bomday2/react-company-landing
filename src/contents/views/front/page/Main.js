@@ -38,16 +38,17 @@ import btnPause from '../assets/img/btn_pause.png'
 import Imgchart1 from '../assets/img/chart1.png'
 import Imgchart2 from '../assets/img/chart2.png'
 import Imgchart3 from '../assets/img/chart3.png'
-import ImgB2b1 from '../assets/img/b2b1.png'
-import ImgB2b2 from '../assets/img/b2b2.png'
-import ImgB2b3 from '../assets/img/b2b3.png'
 import ImgManager1 from '../assets/img/manager1.png'
 import ImgManager2 from '../assets/img/manager2.png'
 import ImgManager3 from '../assets/img/manager3.png'
+import iconToday from '../assets/img/icon_today.png';
+import iconWeek from '../assets/img/icon_week.png';
+import iconMonth from '../assets/img/icon_month.png';
 //components
 import Tab from '../components/inc/Tab';
 import Review from '../components/main/Review';
 import Faq from '../components/board/Faq'
+import ToDoSection from '../components/main/ToDoSection'
 function Main() {
   //메인 비주얼 슬라이드
   const [visualProgress, visualSetProgress] = useState(0);
@@ -166,6 +167,59 @@ function Main() {
   }
   const swiperRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  //todoList 기본 Data  
+  const [todayTodos, setTodayTodos] = useState([
+    { id: 'today1', text: '하루 1문장 말하기', done: false },
+    { id: 'today2', text: '단어장 10개 완성', done: false },
+    { id: 'today3', text: '하루 1문장 말하기', done: false },
+  ]);
+  const [weekTodos, setWeekTodos] = useState([
+    { id: 'week1', text: '회화 영상 1개 시청', done: false },
+    { id: 'week2', text: '단어 복습', done: false },
+    { id: 'week3', text: '7문장 말하기', done: false },
+  ]);
+  const [monthTodos, setMonthTodos] = useState([
+    { id: 'month1', text: '단어장 100개 완성', done: false },
+    { id: 'month2', text: '문장 주고 받기', done: false },
+    { id: 'month3', text: '회화 영상 3개 시청', done: false },
+  ]);
+
+  const toggleTodo = (listSetter, list) => (id) => {
+    listSetter(list.map(todo =>
+      todo.id === id ? { ...todo, done: !todo.done } : todo
+    ));
+  };
+  //todoList 추가
+  const addTodo = (setter, list, prefix) => (text) => {
+    const newItem = {
+      id: `${prefix}_${Date.now()}`,
+      text,
+      done: false
+    };
+    setter([...list, newItem]);
+  };
+  //todoList 삭제
+  const deleteTodo = (setter, list) => (id) => {
+    setter(list.filter(todo => todo.id !== id));
+  };
+  // 수정 관련 상태
+  const [editingId, setEditingId] = useState(null);
+  const [editText, setEditText] = useState('');
+
+  // 수정 시작
+  const startEdit = (id, currentText) => {
+    setEditingId(id);
+    setEditText(currentText);
+  };
+
+  // 수정 완료
+  const confirmEdit = (setter, list) => {
+    setter(list.map(item => 
+      item.id === editingId ? { ...item, text: editText } : item
+    ));
+    setEditingId(null);
+    setEditText('');
+  };
   return (
     <div className={mainStyle.container}>
       {/*메인 비주얼*/}
@@ -297,30 +351,51 @@ function Main() {
           </div>
         </div>
       </div>
-      {/* B2B 러닝 허브*/}
-      <div className={mainStyle.b2b_sec}>
+      {/* todo list */}
+      <div className={mainStyle.todo_sec}>
         <div className={mainStyle.inner}>
-          <p className={mainStyle.sub_tit}>기업을 위한 효율적인 <b className={textStyle.point}>WebNity B2B 러닝 허브</b>
+          <p className={mainStyle.sub_tit}><b className={textStyle.point}>WebNity</b>의 학습 관리를 체험해보세요
           </p>
-          <div className={mainStyle.contents}>
-            <div className={mainStyle.item}>
-              <img src={ImgB2b1} alt=''/>
-              <p className={mainStyle.tit}>실시간 학습 현황 모니터링</p>
-              <p className={mainStyle.txt}>임직원의 학습 참여율과 성과를<br/>실시간으로 확인할 수 있습니다.</p>
-            </div>
-            <div className={mainStyle.item}>
-              <img src={ImgB2b2} alt=''/>
-              <p className={mainStyle.tit}>AI 기반 성과 분석</p>
-              <p className={mainStyle.txt}>발음, 유창성, 정확성까지!<br/>
-                AI가 자동 분석한 학습 데이터를<br/> 
-                통해 임직원의 성장을 한 눈에 <br/>
-                파악해보세요.</p>
-            </div>
-            <div className={mainStyle.item}>
-              <img src={ImgB2b3} alt=''/>
-              <p className={mainStyle.tit}>원클릭으로 보고서 확인</p>
-              <p className={mainStyle.txt}>임직원의 학습 데이터, 한눈에 정리된 보고서로 관리하세요.<br/>보고서를 간편하게 확인 및 다운로드 할 수 있습니다.</p>
-            </div>
+          <div className={mainStyle.todo__wrap}>
+            <ToDoSection
+              title="오늘의 학습"
+              icon={iconToday}
+              todos={todayTodos}
+              toggleTodo={toggleTodo(setTodayTodos, todayTodos)}
+              addTodo={(text) => addTodo(setTodayTodos, todayTodos, 'today')(text)}
+              deleteTodo={deleteTodo(setTodayTodos, todayTodos)}
+              editingId={editingId}
+              editText={editText}
+              setEditText={setEditText}
+              startEdit={startEdit}
+              confirmEdit={() => confirmEdit(setTodayTodos, todayTodos)}
+            />
+            <ToDoSection
+              title="이주의 학습"
+              icon={iconWeek}
+              todos={weekTodos}
+              toggleTodo={toggleTodo(setWeekTodos, weekTodos)}
+              addTodo={(text) => addTodo(setWeekTodos, weekTodos, 'week')(text)}
+              deleteTodo={deleteTodo(setWeekTodos, weekTodos)}
+              editingId={editingId}
+              editText={editText}
+              setEditText={setEditText}
+              startEdit={startEdit}
+              confirmEdit={() => confirmEdit(setWeekTodos, weekTodos)}
+            />
+            <ToDoSection
+              title="이달의 학습"
+              icon={iconMonth}
+              todos={monthTodos}
+              toggleTodo={toggleTodo(setMonthTodos, monthTodos)}
+              addTodo={(text) => addTodo(setMonthTodos, monthTodos, 'month')(text)}
+              deleteTodo={deleteTodo(setMonthTodos, monthTodos)}
+              editingId={editingId}
+              editText={editText}
+              setEditText={setEditText}
+              startEdit={startEdit}
+              confirmEdit={() => confirmEdit(setMonthTodos, monthTodos)}
+            />
           </div>
         </div>
       </div>

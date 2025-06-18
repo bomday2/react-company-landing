@@ -29,7 +29,7 @@
 .gnb{
   margin-left:auto;
   @include flex(y);
-  gap:40px;
+  gap:50px;
   font-size: 18px;
   font-weight: 600; 
   @include media-max($l){
@@ -40,6 +40,7 @@
     padding:100px 30px 50px;
     position: relative;
     z-index: 2;
+    gap:20px;
   }
   &__bg{
     display: none;
@@ -91,8 +92,10 @@
   }
 }
 .gnb_menu{
+  padding:24px 20px;
   @include media-max($l){
     @include flex(y);
+    padding:5px 0;
     gap:5px;
     width:100%;
     justify-content: flex-start !important;
@@ -102,21 +105,30 @@
       width:6px;
       height: 6px;
       background-color: $point;
-      border-radius: 6px;
+      @include media-max($l){
+        border-radius: 4px;
+      }
     }
   }
   &.active{
     @include flex(all);
     gap:5px;
-    @include media-max($l){
-    }
+    position: relative;
     &::before{
       content: '';
       display: inline-block;
-      width:6px;
-      height: 6px;
-      background-color: $point;
-      border-radius: 6px;
+      height: 4px;
+      background-color: $point;      
+      @include media-min($l){
+        position: absolute;
+        width:100%;
+        bottom:0;
+      }
+      @include media-max($l){
+        border-radius: 4px;
+        width:6px;
+        height: 6px;
+      }
     }
   }
 }
@@ -234,6 +246,14 @@
 .weather{
   @include flex(y);
   gap:10px;
+  @include media-max($l){
+    margin-inline:auto 10px;
+    gap:5px;
+    font-size:12px;
+    img{
+      height:40px;
+    }
+  }
   .temperature{
     font-weight: 500;
     color:$fc-gray

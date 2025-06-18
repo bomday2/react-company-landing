@@ -98,45 +98,83 @@
     }   
   }
 }
-
-.b2b_sec{
+//todolist
+.todo_sec{
   background-color: $bg;
-  .contents{
-    @include media-min($l){
-      @include list(30px,0,3);
-    }
-    @include media-max($l){
-      @include flex(column);
-      gap:15px;
-    }
-  }
-  .item{
-    border-radius: 40px;
-    background: #FFF; 
-    padding:50px 35px;
-    line-height: 1.5;
-    align-self: stretch;
-    box-shadow: 0px 0px 10px rgba(0,0,0,.1);
-    @include media-max($l){
-      padding:20px 20px 30px;
-      border-radius: 20px;
-    }
-    .tit{
-      margin-top:50px;
-      font-size: 29px;
-      font-weight: 600; 
+  .todo{
+    &__wrap{
+      @include flex(y);
+      gap:10px;
       @include media-max($l){
-        margin-top:20px;
-        font-size:22px;
+        @include flex(column);
+        width: 100%;
+      }
+      .tit{
+        text-align: center;
+        margin-bottom:25px;
+        font-size:25px;
+        font-weight: 600;
+        border-bottom:1px solid $c-border;
+        padding-bottom:20px;
+        padding-inline: 10px;
+        @include flex(all);
+        gap:8px;
+        @include media-max($l){
+          font-size:18px;
+        }
+        .icon{
+          width:30px;
+          height: 30px;
+          background-color: $point;
+          border-radius: 50%;
+          @include flex(all);
+          img{
+            height: 20px;
+          }
+        }
       }
     }
-    .txt{
-      font-size: 22px;
-      font-weight: 500;  
-      margin-top:36px;
+    &__box{
+      background-color: #fff;
+      padding:40px;
+      border-radius: 20px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,.2);
+      align-self: stretch;
+      @include flex(column);
       @include media-max($l){
-        margin-top:15px;
-        font-size:16px;
+        padding:30px 25px 40px;
+        width:100%;
+      }
+      .add{
+        @include flex(y);
+        margin-top:auto;
+        input{
+          border:none;
+          border-radius: 4px 0px 0 4px;
+          height: 35px;
+          padding-inline: 5px;
+          background-color: #fff;
+          border:1px solid $point-light;
+          border-right:none;
+        }
+        .btn{
+          border-radius: 0 4px 4px 0;
+          border:1px solid $point;
+          padding:5px 10px;
+          width: 100%;
+          color:#fff;
+          height: 35px;
+          background-color: $point
+        }
+      }
+    }
+    &__list{
+      @include flex(column);
+      gap:20px;
+      font-size:17px;
+      margin-bottom:20px;
+      li{
+        @include flex(y);
       }
     }
   }
@@ -220,7 +258,7 @@
         .txt{
           font-size: 19px;
           font-weight: 500;
-          color:#787878;
+          color:$fc-gray;
           @include media-max($l){
             font-size:16px;
           }

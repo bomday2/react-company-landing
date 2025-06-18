@@ -41,6 +41,7 @@
     overflow: hidden;
     visibility: hidden;
     @include duration;
+    color:$fc-gray;
   }
   &.active{
     background-color: #fff;
